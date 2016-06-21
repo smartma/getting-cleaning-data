@@ -1,54 +1,11 @@
-# Code Book
+## Code Book
 
-This code book sumarises the data and analysis used to create ```'full_tidy_data.csv'```, the main tidy data file. It also generates ```'average_variable_values.csv'```
-
-## Requirements
-
-1. Merge the training and the test sets to create one data set.
-2. Extracts only the measurements on the mean and standard deviation for each measurement.
-3. Uses descriptive activity names to name the activities in the data set
-4. Appropriately labels the data set with descriptive variable names.
-5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-
-## Design (matched to requiremnts)
-
-The following data files are used for this project:
-
-1. UCI HAR Dataset/test/subject_test.txt
-2. UCI HAR Dataset/train/subject_train.txt
-3. UCI HAR Dataset/test/y_test.txt
-4. UCI HAR Dataset/train/y_train.txt
-5. UCI HAR Dataset/test/X_test.txt
-6. UCI HAR Dataset/train/X_train.txt
-7. UCI HAR Dataset/features.txt
-8. UCI HAR Dataset/activity_labels.txt
-
-Firstly, the full data set is downloaded and extracted. The above 7 files are read into R objects. The subject files (```subject_test.txt``` and ```subject_train.txt```) are combined by row and given the column name 'Subject'. The activity files (```y_test.txt``` & ```y_train.txt```) are combined by row and given the column name 'Activity'. The main data files (```X_test.txt``` & ```X_train.txt```) are given the column headings/names as given in the ```features.txt``` file. This R object (containing the main data) is then subset to only contain the measurements for mean() and std(). **This satisfies requirement 2**.
-
-The activity, subject and main measurement data is this combined by column. **This satisifies requirement 1**
-
-The ```activity_labels.txt``` file is read into R and are used to replace the numeric activity data with the labels (i.e. 1 becomes WALKING, 2 becomes WALKING_UPSTAIRS etc). **This satisifes requirement 3**
-
-The column names in the main data object are then updated to be more descriptive. A breakdown of the updates are as follows:
-
-* std() becomes SD
-* mean() becomes MEAN
-* measurements starting 't' have the 't' replaced with 'time'
-* measurements starting 'f' have the 'f' replaced with 'frequency'
-* 'Acc' becomes 'Accelerometer'
-* 'Gyro' becomes 'Gyroscope'
-* 'Mag' becomes 'Magnitude'
-* 'BodyBody' becomes 'Body'
-* All hyphens become underscores
-
-**This satisfies requirement 4**
-
-Finally the main data object is melted to take the measurements in columns to data rows. This object is then aggregated/summarised to generate the average/mean value for each subject for each activity for each measurement. **This satisfies requirement 5**
+This code book lists the identifiers and measurements used in ```'full_tidy_data.csv'```. For a full breakdown of the analysis performed please see the ```'README.md'``` file.
 
 ### Identifiers
 
-1. ```Subject``` - A unique integer assigned for each subject/person
-2. ```Activity``` - The type of activity/movement being measured, these are:
+* ```Subject``` - A unique integer assigned for each subject/person
+* ```Activity``` - The type of activity/movement being measured, these are:
     1. WALKING
     2. WALKING_UPSTAIRS
     3. WALKING_DOWNSTAIRS
@@ -58,3 +15,69 @@ Finally the main data object is melted to take the measurements in columns to da
 
 ### Measurements
 
+* ```timeBodyAccelerometer_MEAN_X```
+* ```timeBodyAccelerometer_MEAN_Y```
+* ```timeBodyAccelerometer_MEAN_Z```
+* ```timeBodyAccelerometer_SD_X```
+* ```timeBodyAccelerometer_SD_Y```
+* ```timeBodyAccelerometer_SD_Z```
+* ```timeGravityAccelerometer_MEAN_X```
+* ```timeGravityAccelerometer_MEAN_Y```
+* ```timeGravityAccelerometer_MEAN_Z```
+* ```timeGravityAccelerometer_SD_X```
+* ```timeGravityAccelerometer_SD_Y```
+* ```timeGravityAccelerometer_SD_Z```
+* ```timeBodyAccelerometerJerk_MEAN_X```
+* ```timeBodyAccelerometerJerk_MEAN_Y```
+* ```timeBodyAccelerometerJerk_MEAN_Z```
+* ```timeBodyAccelerometerJerk_SD_X```
+* ```timeBodyAccelerometerJerk_SD_Y```
+* ```timeBodyAccelerometerJerk_SD_Z```
+* ```timeBodyGyroscope_MEAN_X```
+* ```timeBodyGyroscope_MEAN_Y```
+* ```timeBodyGyroscope_MEAN_Z```
+* ```timeBodyGyroscope_SD_X```
+* ```timeBodyGyroscope_SD_Y```
+* ```timeBodyGyroscope_SD_Z```
+* ```timeBodyGyroscopeJerk_MEAN_X```
+* ```timeBodyGyroscopeJerk_MEAN_Y```
+* ```timeBodyGyroscopeJerk_MEAN_Z```
+* ```timeBodyGyroscopeJerk_SD_X```
+* ```timeBodyGyroscopeJerk_SD_Y```
+* ```timeBodyGyroscopeJerk_SD_Z```
+* ```timeBodyAccelerometerMagnitude_MEAN```
+* ```timeBodyAccelerometerMagnitude_SD```
+* ```timeGravityAccelerometerMagnitude_MEAN```
+* ```timeGravityAccelerometerMagnitude_SD```
+* ```timeBodyAccelerometerJerkMagnitude_MEAN```
+* ```timeBodyAccelerometerJerkMagnitude_SD```
+* ```timeBodyGyroscopeMagnitude_MEAN```
+* ```timeBodyGyroscopeMagnitude_SD```
+* ```timeBodyGyroscopeJerkMagnitude_MEAN```
+* ```timeBodyGyroscopeJerkMagnitude_SD```
+* ```frequencyBodyAccelerometer_MEAN_X```
+* ```frequencyBodyAccelerometer_MEAN_Y```
+* ```frequencyBodyAccelerometer_MEAN_Z```
+* ```frequencyBodyAccelerometer_SD_X```
+* ```frequencyBodyAccelerometer_SD_Y```
+* ```frequencyBodyAccelerometer_SD_Z```
+* ```frequencyBodyAccelerometerJerk_MEAN_X```
+* ```frequencyBodyAccelerometerJerk_MEAN_Y```
+* ```frequencyBodyAccelerometerJerk_MEAN_Z```
+* ```frequencyBodyAccelerometerJerk_SD_X```
+* ```frequencyBodyAccelerometerJerk_SD_Y```
+* ```frequencyBodyAccelerometerJerk_SD_Z```
+* ```frequencyBodyGyroscope_MEAN_X```
+* ```frequencyBodyGyroscope_MEAN_Y```
+* ```frequencyBodyGyroscope_MEAN_Z```
+* ```frequencyBodyGyroscope_SD_X```
+* ```frequencyBodyGyroscope_SD_Y```
+* ```frequencyBodyGyroscope_SD_Z```
+* ```frequencyBodyAccelerometerMagnitude_MEAN```
+* ```frequencyBodyAccelerometerMagnitude_SD```
+* ```frequencyBodyAccelerometerJerkMagnitude_MEAN```
+* ```frequencyBodyAccelerometerJerkMagnitude_SD```
+* ```frequencyBodyGyroscopeMagnitude_MEAN```
+* ```frequencyBodyGyroscopeMagnitude_SD```
+* ```frequencyBodyGyroscopeJerkMagnitude_MEAN```
+* ```frequencyBodyGyroscopeJerkMagnitude_SD```
