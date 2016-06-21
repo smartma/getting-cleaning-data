@@ -34,7 +34,7 @@ run_analysis <- function(){
   sub_data <- rbind(sub_tst, sub_trn)
   names(sub_data) <- c("Subject")
   
-  # Combine the rows of the Activty Data & give it the name 'Subject'
+  # Combine the rows of the Activty Data & give it the name 'Activity'
   act_data <- rbind(act_tst, act_trn)
   names(act_data) <- c("Activity")
   
@@ -64,19 +64,21 @@ run_analysis <- function(){
   names(full_data)<-gsub("Gyro", "Gyroscope", names(full_data))
   names(full_data)<-gsub("Mag", "Magnitude", names(full_data))
   names(full_data)<-gsub("BodyBody", "Body", names(full_data))
-  names(full_data)<-gsub("\\-", "\\_", names(full_data))
   
   # Write to file
   write.csv(full_data, file = 'full_tidy_data.csv', row.names = FALSE)
   
   # Creates a second, independent data set with the average of each variable for each activity and each subject.
+  library(dplyr)
+  library(reshape2)
+  
   full_data_melt <- melt(full_data, id = c("Subject", "Activity"))
   aggdata <- summarise(group_by(full_data_melt, Subject, Activity, variable), mean(value))
   
   write.csv(aggdata, file = 'average_variable_values.csv', row.names = FALSE)
   
   print("Complete")
-
+  full_data
 }
 
 
