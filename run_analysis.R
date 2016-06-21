@@ -1,7 +1,5 @@
 run_analysis <- function(){
   
-  # Set the working directory
-  setwd("C:/Users/Mike/Desktop/r/project")
   dataUrl <- 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
   
   # Create a data folder if not already created
